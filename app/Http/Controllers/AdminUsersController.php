@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
 use App\Http\Requests\UsersRequest;
 use App\Role;
 use App\User;
@@ -44,8 +45,21 @@ class AdminUsersController extends Controller
     public function store(UsersRequest $request)
     {
         //
-        User::create($request->all());
+        $input = $request->all();
 
+        if ($file = $request->file('pdf_file')){
+            $name = time() . $file->getClientOriginalName();
+            $file->move('uploaded_books', $name);
+
+            $newFile = File::create(['file_path'=>$name]);
+            $input['pdf_file'] = $newFile->id;
+        }
+        // encrypt the password
+        $input['password'] = bcrypt($request->password);
+
+        User::create($input);
+
+//        User::create($request->all());
         return redirect('/admin/users');
 //        return $request->all();
     }

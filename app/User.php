@@ -36,7 +36,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
 
+    // Added with Edwen
     public function role(){
         return $this->belongsTo('App\Role');
+    }
+
+    public function file(){
+        return $this->belongsTo('App\File');
     }
 }
