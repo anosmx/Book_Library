@@ -23,7 +23,19 @@
     </div>
 
     <div class="form-group">
+        {!! Form::label('password', 'Password:') !!}
+        {!! Form::password('password', ['class'=>'form-control'])!!}
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('pdf_file', 'Book:') !!}
+        {!! Form::file('pdf_file', null, ['class'=>'form-control'])!!}
+    </div>
+
+    <div class="form-group">
         {!! Form::submit('Create User', ['class'=>'btn btn-primary']) !!}
     </div>
 
     {!! Form::close() !!}
+
+@include('includes.form_errors')
