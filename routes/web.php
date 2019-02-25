@@ -20,3 +20,6 @@ Route::resource('/addbook', 'UploadController');
 Auth::routes();
 
 Route::get('/home', 'BookController@index')->name('home');
+
+// Admin Route
+Route::resource('admin/users', 'AdminUsersController');
