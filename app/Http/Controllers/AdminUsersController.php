@@ -47,12 +47,14 @@ class AdminUsersController extends Controller
         //
         $input = $request->all();
 
-        if ($file = $request->file('pdf_file')){
+        if ($file = $request->file('file_id')){
+
             $name = time() . $file->getClientOriginalName();
             $file->move('uploaded_books', $name);
 
+            // in lecture its called $photo, and class is Photo
             $newFile = File::create(['file_path'=>$name]);
-            $input['pdf_file'] = $newFile->id;
+            $input['file_id'] = $newFile->id;
         }
         // encrypt the password
         $input['password'] = bcrypt($request->password);
@@ -85,7 +87,10 @@ class AdminUsersController extends Controller
     public function edit($id)
     {
         //
-        return view('admin.users.edit');
+        $user = User::findOrFail($id);
+        $roles = Role::pluck('name', 'id')->all();
+
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -98,6 +103,26 @@ class AdminUsersController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::findOrFail($id);
+
+        $input = $request->all();
+
+        if ($file = $request->file('file_id')){
+
+            $name = time() . $file->getClientOriginalName();
+            $file->move('uploaded_books', $name);
+
+            // in lecture its called $photo, and class is Photo
+            $newFile = File::create(['file_path'=>$name]);
+            $input['file_id'] = $newFile->id;
+        }
+        // encrypt the password
+        $input['password'] = bcrypt($request->password);
+
+        // Update the user info
+        $user->update($input);
+
+         return redirect('/admin/users');
     }
 
     /**

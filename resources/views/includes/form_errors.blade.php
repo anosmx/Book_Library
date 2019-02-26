@@ -1,11 +1,14 @@
 @if(count($errors) > 0)
+    @foreach($errors->all() as $error )
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="material-icons">close</i>
+        </button>
+        <span>
 
-    <div class="alert alert-danger">
-        <ul>
-            @foreach($errors->all() as $error )
-                <li>{{$error}}</li>
-            @endforeach
-        </ul>
+            <b> Warning - </b> {{$error}}
+
+        </span>
     </div>
-
+    @endforeach
 @endif

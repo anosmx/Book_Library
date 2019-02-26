@@ -29,4 +29,8 @@ class BookController extends Controller
         return view('books.writings', compact(['files']));
     }
 
+    public function addBook(){
+        return view('books.addbook');
+    }
+
 }

@@ -12,10 +12,8 @@
 */
 
 Route::get('/', 'BookController@index')->name('books.index');
-
 Route::get('/writings', 'BookController@writings')->name('books.writings');
-
-Route::resource('/addbook', 'UploadController');
+Route::get('/addbook', 'BookController@addBook')->name('books.addbook');
 
 Auth::routes();
 

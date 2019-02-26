@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'is_active', 'pdf_file',
+        'name', 'email', 'password', 'role_id', 'is_active', 'file_id',
     ];
 
     /**
@@ -27,14 +27,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function posts(){
-        return $this->hasMany('App\Post');
-    }
-
-    public function comments(){
-        return $this->hasMany('App\Comment');
-    }
 
     // Added with Edwen
     public function role(){
