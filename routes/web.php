@@ -12,12 +12,18 @@
 */
 
 Route::get('/', 'BookController@index')->name('books.index');
+Route::get('/home', 'BookController@index')->name('home');
 Route::get('/writings', 'BookController@writings')->name('books.writings');
 Route::get('/addbook', 'BookController@addBook')->name('books.addbook');
 
 Auth::routes();
 
-Route::get('/home', 'BookController@index')->name('home');
+// Admin Route group
+Route::group(['middleware'=>'admin'], function (){
+    Route::resource('admin/users', 'AdminUsersController');
+});
 
-// Admin Route
-Route::resource('admin/users', 'AdminUsersController');
+
+
+
+

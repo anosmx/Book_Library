@@ -57,7 +57,7 @@
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li class="nav-item ">
-                    <a class="nav-link" href="./dashboard.html">
+                    <a class="nav-link" href="{{route('users.index')}}">
                         <i class="material-icons">dashboard</i>
                         <p>لوحة التحكم</p>
                     </a>
@@ -67,6 +67,9 @@
                         <i class="material-icons">person</i>
                         <p>المستخدمين</p>
                     </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('admin/users/create')}}">مستخدم جديد</a>
+                    </li>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="./tables.html">
@@ -77,13 +80,13 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="./typography.html">
                         <i class="material-icons">library_books</i>
-                        <p>تایپوگرافی</p>
+                        <p>خطوط</p>
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="./icons.html">
                         <i class="material-icons">bubble_chart</i>
-                        <p>آیکن‌ها</p>
+                        <p>شارت</p>
                     </a>
                 </li>
                 <li class="nav-item ">
@@ -143,7 +146,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="material-icons">notifications</i>
-                                <span class="notification">۵</span>
+                                <span class="notification">9</span>
                                 <p class="d-lg-none d-md-block">
                                     اعلان‌ها
                                 </p>
@@ -152,13 +155,23 @@
                                 <a class="dropdown-item" href="#">محمدرضا به ایمیل شما پاسخ داد</a>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#pablo">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="material-icons">person</i>
+                                <span class="notification">4</span>
+                                {{ Auth::user()->name }}
                                 <p class="d-lg-none d-md-block">
-                                    حساب
+                                    اعلان‌ها
                                 </p>
                             </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('خروج') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </li>
                     </ul>
                 </div>

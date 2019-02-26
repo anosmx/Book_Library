@@ -71,7 +71,7 @@
                                         @endif
                                         @if (Route::has('register'))
                                                 <a class="btn text-warning" href="{{ route('register') }}">
-                                                    {{ __('تسجيل') }}
+                                                    {{ __('مستخدم جديد؟ سجل هنا!') }}
                                                 </a>
                                         @endif
                                     </div>

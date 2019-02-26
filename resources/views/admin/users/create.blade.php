@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header card-header-primary">
             <h4 class="card-title ">انشاء مستخدم</h4>
-            <p class="card-category"> قائمة جميع المستخدمين المسجلين</p>
+            <p class="card-category"> ادخل معلومات المستخدم ادناه</p>
         </div>
         <div class="card-body">
             {!! Form::open(['method'=>'POST', 'action'=> 'AdminUsersController@store','files'=>true]) !!}
@@ -36,8 +36,8 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('file_id', 'رفع كتاب:') !!}
-                {!! Form::file('file_id', null, ['class'=>'form-control'])!!}
+                {!! Form::label('file_id', 'اضغط هنا لرفع كتاب:') !!}
+                {!! Form::file('file_id', null, ['class'=>'form-control-lg'])!!}
             </div>
 
             <div class="form-group">

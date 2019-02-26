@@ -36,4 +36,12 @@ class User extends Authenticatable
     public function file(){
         return $this->belongsTo('App\File');
     }
+
+    // Method to detect admin user
+    public function isAdmin(){
+        if ($this->role->name == "Administrator"){
+            return true;
+        }
+        return false;
+    }
 }

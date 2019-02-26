@@ -44,21 +44,27 @@ class AdminUsersController extends Controller
      */
     public function store(UsersRequest $request)
     {
-        //
-        $input = $request->all();
+        // Check if password is empty
+        if (trim($request->password) == ''){
+            $input = $request->except('password');
+        }else{
+            $input = $request->all();
+            // encrypt the password
+            $input['password'] = bcrypt($request->password);
+        }
 
+        // To upload user file or image
         if ($file = $request->file('file_id')){
 
-            $name = time() . $file->getClientOriginalName();
+            $name = time() . '_' . $file->getClientOriginalName();
             $file->move('uploaded_books', $name);
 
             // in lecture its called $photo, and class is Photo
             $newFile = File::create(['file_path'=>$name]);
             $input['file_id'] = $newFile->id;
         }
-        // encrypt the password
-        $input['password'] = bcrypt($request->password);
 
+        //  Create user record in Database
         User::create($input);
 
 //        User::create($request->all());
@@ -105,19 +111,25 @@ class AdminUsersController extends Controller
         //
         $user = User::findOrFail($id);
 
-        $input = $request->all();
+        // Check if password is empty
+        if (trim($request->password) == ''){
+            $input = $request->except('password');
+        }else{
+            $input = $request->all();
+            // encrypt the password
+            $input['password'] = bcrypt($request->password);
+        }
 
+        // To upload user file or image
         if ($file = $request->file('file_id')){
 
-            $name = time() . $file->getClientOriginalName();
+            $name = time() . '_' . $file->getClientOriginalName();
             $file->move('uploaded_books', $name);
 
             // in lecture its called $photo, and class is Photo
             $newFile = File::create(['file_path'=>$name]);
             $input['file_id'] = $newFile->id;
         }
-        // encrypt the password
-        $input['password'] = bcrypt($request->password);
 
         // Update the user info
         $user->update($input);
