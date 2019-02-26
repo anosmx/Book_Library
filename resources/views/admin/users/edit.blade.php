@@ -40,12 +40,25 @@
                 <h5>{{$user->file ? $user->file->file_path : 'لا يوجد كتاب'}}</h5>
             </div>
 
+            {{--Line up the two buttons--}}
+            <div class="row">
+                <div class="col-sm-6">
             <div class="form-group">
                 {!! Form::submit('تحديث البيانات', ['class'=>'btn btn-primary']) !!}
             </div>
 
             {!! Form::close() !!}
+                </div>
 
+                <div class="col-sm-6">
+                {!! Form::open(['method'=>'DELETE', 'action'=> ['AdminUsersController@destroy', $user->id]]) !!}
+                    <div class="form-group">
+                        {!! Form::submit('حذف المستخدم', ['class'=>'btn btn-danger pull-left']) !!}
+                    </div>
+                {!! Form::close() !!}
+                </div>
+            </div>
+            {{--End of line up--}}
         </div>
     </div>
 @endsection

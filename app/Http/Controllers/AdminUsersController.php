@@ -7,6 +7,7 @@ use App\Http\Requests\UsersRequest;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminUsersController extends Controller
 {
@@ -145,6 +146,12 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Delete users
+        User::findOrFail($id)->delete();
+
+        // Messaging feedback
+        Session::flash('deleted_user', 'تم حذف المستخدم!');
+
+        return redirect('/admin/users');
     }
 }

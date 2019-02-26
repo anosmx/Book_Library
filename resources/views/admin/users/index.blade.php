@@ -1,6 +1,17 @@
 @extends('admin.layouts.app')
 @section('content')
 
+    @if(Session::has('deleted_user'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="material-icons">close</i>
+            </button>
+            <span>
+                {{session('deleted_user')}}
+            </span>
+        </div>
+    @endif
+
 <div class="card">
     <div class="card-header card-header-primary">
         <h4 class="card-title ">المستخدمين</h4>

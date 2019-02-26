@@ -6,7 +6,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title> لوحة التحكم </title>
+    <title> {{ config('app.name', 'Laravel') }} </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 
     <!-- CSRF Token -->
@@ -14,10 +14,10 @@
 
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('admin/css/font-awesome.min.css')}}">
 
     <!-- Markazi Text font include just for persian demo purpose, don't include it in your project -->
-    <link href="https://fonts.googleapis.com/css?family=Cairo&amp;subset=arabic" rel="stylesheet">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/droid-arabic-kufi" type="text/css"/>
 
     <!-- CSS Files -->
     <link href="{{asset('admin/css/material-dashboard.min.css')}}?v=2.1.0" rel="stylesheet" />
@@ -36,7 +36,9 @@
         .h2,
         .h3,
         .h4 {
-            font-family: "Cairo";
+            font-family: 'DroidArabicKufiRegular';
+            font-weight: normal;
+            font-style: normal;
         }
     </style>
 </head>
@@ -55,10 +57,10 @@
             </a>
         </div>
         <div class="sidebar-wrapper">
-            <ul class="nav">
-                <li class="nav-item ">
+            <ul class="nav ">
+                <li class="nav-item {{ Request::is('users.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('users.index')}}">
-                        <i class="material-icons">dashboard</i>
+                        <i class="material-icons active">dashboard</i>
                         <p>لوحة التحكم</p>
                     </a>
                 </li>
@@ -67,7 +69,7 @@
                         <i class="material-icons">person</i>
                         <p>المستخدمين</p>
                     </a>
-                    <li class="nav-item">
+                    <li class="nav-item {{ Request::is('admin/users/create') ? 'active' : '' }}">
                         <a class="nav-link" href="{{url('admin/users/create')}}">مستخدم جديد</a>
                     </li>
                 </li>
